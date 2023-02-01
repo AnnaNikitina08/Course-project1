@@ -1,5 +1,5 @@
 import requests
-import json
+# import json
 from VK import vk
 from tqdm import tqdm
 import configparser
@@ -35,8 +35,7 @@ class YA:
     def upload(self):
         """Загружает фотографии из списка в созданную папку"""
         url_upload = 'https://cloud-api.yandex.net/v1/disk/resources/upload'
-        num_photo = 0
-        list_info_photo = []
+        num_photo = -1
         for key, value in tqdm(vk.name_photos.items(), ncols=100,
                                dynamic_ncols=True, desc='Loading'):
             num_photo += 1
@@ -47,20 +46,26 @@ class YA:
             response_upload = requests.post(url_upload,
                                             headers=self._get_headers(),
                                             params=params)
-            list_info_photo.append(
-                {
-                    'file_name': value,
-                    'size': 'z'
-                }
-            )
 
             if response_upload.status_code == 202:
                 print('Загрузка прошла успешно!')
             else:
                 print(f'Ошибка: {response_upload.status_code}')
 
-            with open('photos_info.json', 'w') as file:
-                json.dump(list_info_photo, file)
+
+# def photo_info():
+#     list_info_photo = []
+#     num_photo = 0
+#     for key, value in vk.name_photos.items():
+#         num_photo += 1
+#         list_info_photo.append(
+#             {
+#                 'file_name': value,
+#                 'size': 'z'
+#             }
+#         )
+#     with open('photos_info.json', 'w') as file:
+#         json.dump(list_info_photo, file)
 
 
 ya = YA()
