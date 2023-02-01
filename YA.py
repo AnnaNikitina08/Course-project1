@@ -53,19 +53,4 @@ class YA:
                 print(f'Ошибка: {response_upload.status_code}')
 
 
-# def photo_info():
-#     list_info_photo = []
-#     num_photo = 0
-#     for key, value in vk.name_photos.items():
-#         num_photo += 1
-#         list_info_photo.append(
-#             {
-#                 'file_name': value,
-#                 'size': 'z'
-#             }
-#         )
-#     with open('photos_info.json', 'w') as file:
-#         json.dump(list_info_photo, file)
-
-
 ya = YA()
